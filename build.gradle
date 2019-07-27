@@ -1,0 +1,47 @@
+group 'com.yerti'
+version '1.2'
+
+///////////////
+apply plugin: "java"
+
+
+buildscript {
+    ext.spigot_version = "1.8.8-R0.1-SNAPSHOT"
+}
+
+
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
+
+    maven {
+        url "http://repo.extendedclip.com/content/repositories/placeholderapi"
+    }
+}
+
+version = "0.1"
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
+// Use the shade configuration to include the dependency's class files in your final JAR
+
+dependencies {
+    compile "org.spigotmc:spigot-api:$spigot_version"
+    compile "me.clip:placeholderapi:2.9.1"
+}
+
+jar {
+    configurations.shade.each { dep ->
+        from(project.zipTree(dep)) {
+            exclude 'META-INF', 'META-INF/**'
+        }
+    }
+}

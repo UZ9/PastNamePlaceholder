@@ -1,0 +1,7 @@
+name: PastNamePlaceholder
+main: com.yerti.pastnameplaceholder.PastNamePlaceholder
+version: 0.2
+author: Yerti
+depend: [PlaceholderAPI]
+description: >
+  Adds the placeholder %playercheck_getnames% to PlaceholderAPI (For dad on discord)
